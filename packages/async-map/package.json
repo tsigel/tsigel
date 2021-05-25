@@ -1,6 +1,6 @@
 {
   "name": "@tsigel/async-map",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "main": "./dist/asyncMap.js",
   "types": "./dist/asyncMap.d.ts",
   "license": "MIT",
