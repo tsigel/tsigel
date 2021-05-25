@@ -1,0 +1,20 @@
+{
+  "name": "@tsigel/logger",
+  "version": "1.0.0",
+  "main": "./dist/logger.js",
+  "types": "./dist/logger.d.ts",
+  "license": "MIT",
+  "repository": "git@github.com:tsigel/tsigel.git",
+  "author": "tsigel <tsddaniil@gmail.com>",
+  "files": [
+    "dist"
+  ],
+  "dependencies": {
+    "@types/moment": "^2.13.0",
+    "moment": "^2.29.1",
+    "tslib": "^2.2.0"
+  },
+  "scripts": {
+    "build": "npx tsc"
+  }
+}
