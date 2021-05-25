@@ -5,7 +5,6 @@
   "repository": "git@github.com:tsigel/tsigel.git",
   "author": "tsigel <tsddaniil@gmail.com>",
   "license": "MIT",
-  "private": "true",
   "workspaces": [
     "packages/*"
   ],
