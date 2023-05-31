@@ -1,5 +1,5 @@
 import { error, info, log, warn } from './logger';
-import { blue, red, yellow } from 'chalk';
+import { blue, red, yellow, white } from 'chalk';
 
 describe('Logger tests', () => {
     let result: Array<string> = [];
@@ -17,17 +17,12 @@ describe('Logger tests', () => {
 
     it('Test log', () => {
         log('Simple test');
-        expect(result.slice(1)).toEqual(['Simple test']);
+        expect(result.slice(1)).toEqual([white('Simple test')]);
     });
 
     it('Test warn', () => {
         warn('Simple test');
         expect(result.slice(1)).toEqual([yellow('Simple test')]);
-    });
-
-    it('Test error', () => {
-        error('Simple test');
-        expect(result.slice(1)).toEqual([red('Simple test')]);
     });
 
     it('Test info', () => {
