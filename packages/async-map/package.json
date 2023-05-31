@@ -1,13 +1,13 @@
 {
   "name": "@tsigel/async-map",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "./dist/asyncMap.js",
   "types": "./dist/asyncMap.d.ts",
   "license": "MIT",
   "repository": "git@github.com:tsigel/tsigel.git",
   "author": "tsigel <tsddaniil@gmail.com>",
   "files": [
-    "dist"
+    "dist/*"
   ],
   "scripts": {
     "build": "npx tsc",
