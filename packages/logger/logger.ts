@@ -1,40 +1,27 @@
-import { blue, red, yellow } from 'chalk';
-import moment from 'moment';
+import chalk from 'chalk';
+import dayjs from 'dayjs';
 
-const CONFIG = {
-    datePattern: 'DD.MM HH:mm:ss',
-    timeZone: 0
-};
-
-let sign = '';
-
-const makeTime = () =>
-    moment().utc().add(CONFIG.timeZone, 'hour').format(CONFIG.datePattern);
-
-const getSign = () =>
-    CONFIG.timeZone > 0 ? '+' : '';
-
-const makePattern = () =>
-    `${makeTime()} (TZ ${sign}${CONFIG.timeZone})`;
-
-
-export const configure = <K extends keyof typeof CONFIG, V extends typeof CONFIG[K]>(key: K, value: V): typeof CONFIG => {
-    Object.assign(CONFIG, { [key]: value });
-    if (key === 'timeZone') {
-        sign = getSign();
+const serialize = (data: any) => {
+    switch (typeof data) {
+        case 'number':
+        case 'string':
+        case 'symbol':
+            return data;
+        default:
+            return JSON.stringify(data, null, 4);
     }
-
-    return { ...CONFIG };
+};
+const out = (isError: boolean, formatter: (message: string) => string, data: Array<any>) => {
+    const message = data.map(serialize).join(' ');
+    const method = isError ? 'error' : 'log';
+    const now = dayjs();
+    console[method](`${now.format('DD.MM.YYYY HH:mm:ss (Z)')}: `, formatter(message));
 };
 
-export const log = (...args: Array<any>) =>
-    console.log(makePattern(), ...args);
+export const log = (...data: Array<any>) => out(false, chalk.white, data);
 
-export const warn = (...args: Array<any>) =>
-    console.log(makePattern(), yellow(...args));
+export const info = (...data: Array<any>) => out(false, chalk.blue, data);
 
-export const info = (...args: Array<any>) =>
-    console.log(makePattern(), blue(...args));
+export const warn = (...data: Array<any>) => out(false, chalk.yellow, data);
 
-export const error = (...args: Array<any>) =>
-    console.log(makePattern(), red(...args));
+export const error = (...data: Array<any>) => out(true, chalk.red, data);

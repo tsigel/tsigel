@@ -1,4 +1,4 @@
-import { configure, error, info, log, warn } from './logger';
+import { error, info, log, warn } from './logger';
 import { blue, red, yellow } from 'chalk';
 
 describe('Logger tests', () => {
@@ -37,32 +37,6 @@ describe('Logger tests', () => {
 
     it('Test default day pattern', () => {
         log('');
-        expect(result[0]).toMatch(/\d\d\.\d\d\s\d\d:\d\d:\d\d\s\(TZ\s0\)/);
-    });
-
-    it('Test custom day pattern', () => {
-        const defaultConfig = configure('timeZone', 0);
-        configure('datePattern', 'DD.MM');
-        log('');
-        configure('datePattern', defaultConfig.datePattern);
-
-        expect(result[0]).toMatch(/\d\d\.\d\d\s\(TZ\s0\)/);
-    });
-
-    describe('Test custom time zone', () => {
-        it('Test timeZone gt zero', () => {
-            configure('timeZone', 1);
-            log('');
-            configure('timeZone', 0);
-
-            expect(result[0]).toMatch(/\d\d\.\d\d\s\d\d:\d\d:\d\d\s\(TZ\s\+1\)/);
-        });
-        it('Test timeZone lt zero', () => {
-            configure('timeZone', -1);
-            log('');
-            configure('timeZone', 0);
-
-            expect(result[0]).toMatch(/\d\d\.\d\d\s\d\d:\d\d:\d\d\s\(TZ\s\-1\)/);
-        });
+        expect(result[0]).toMatch(/\d\d\.\d\d\.\d\d\d\d\s\d\d:\d\d:\d\d\s\([+|-]\d\d:\d\d\)/);
     });
 });

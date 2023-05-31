@@ -10,7 +10,10 @@
     "dist"
   ],
   "dependencies": {
+    "@types/chalk": "^2.2.0",
     "@types/moment": "^2.13.0",
+    "chalk": "^4.1.2",
+    "dayjs": "^1.11.7",
     "moment": "^2.29.1",
     "tslib": "^2.2.0"
   },

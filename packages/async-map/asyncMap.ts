@@ -1,4 +1,4 @@
-export const asyncMap = <T, U>(treads: number, callback: (data: T, index: number) => U | Promise<U>, list: Array<T>): Promise<Array<U>> => {
+export const asyncMap = <T, U>(treads: number, callback: (data: T, index?: number) => U | Promise<U>, list: Array<T>): Promise<Array<U>> => {
     const isPromise = (item: unknown): item is Promise<unknown> =>
         typeof item === 'object' && typeof (item as Promise<unknown>)?.then === 'function';
 
