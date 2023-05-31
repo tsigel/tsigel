@@ -1,6 +1,6 @@
 {
   "name": "@tsigel/logger",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "main": "./dist/logger.js",
   "types": "./dist/logger.d.ts",
   "license": "MIT",
