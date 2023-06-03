@@ -3219,7 +3219,9 @@
 
 "getenvprop@file:/Users/tsigel/WebstormProjects/tsigel/packages/getEnvProp":
   "resolved" "file:packages/getEnvProp"
-  "version" "0.0.1"
+  "version" "1.0.0"
+  dependencies:
+    "@tsigel/logger" "^1.0.3"
 
 "getpass@^0.1.1":
   "integrity" "sha512-0fzj9JxOLfJ+XGLhR8ze3unN0KZCgZwiSSDz168VERjK8Wl8kVSdcu2kspd4s4wtAa1y/qrVRiAA0WclVsu0ng=="

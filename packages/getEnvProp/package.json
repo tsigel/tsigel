@@ -1,6 +1,6 @@
 {
-  "name": "getenvprop",
-  "version": "0.0.1",
+  "name": "@tsigel/getenvprop",
+  "version": "1.0.0",
   "description": "Get required property from env with exeption. Get typed property.",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
