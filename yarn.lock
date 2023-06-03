@@ -1411,16 +1411,15 @@
 
 "@tsigel/async-map@file:/Users/tsigel/WebstormProjects/tsigel/packages/async-map":
   "resolved" "file:packages/async-map"
-  "version" "1.0.1"
+  "version" "1.0.3"
   dependencies:
     "tslib" "^2.2.0"
 
-"@tsigel/logger@file:/Users/tsigel/WebstormProjects/tsigel/packages/logger":
+"@tsigel/logger@^1.0.3", "@tsigel/logger@file:/Users/tsigel/WebstormProjects/tsigel/packages/logger":
   "resolved" "file:packages/logger"
-  "version" "1.0.1"
+  "version" "1.0.3"
   dependencies:
     "@types/chalk" "^2.2.0"
-    "@types/moment" "^2.13.0"
     "chalk" "^4.1.2"
     "dayjs" "^1.11.7"
     "tslib" "^2.2.0"
@@ -3217,6 +3216,10 @@
   "integrity" "sha512-Ln0UQDlxH1BapMu3GPtf7CuYNwRZf2gwCuPqbyG6pB8WfmFpzqcy4xtAaAMUhnNqjMKTiCPZG2oMT3YSx8U2NA=="
   "resolved" "https://registry.npmjs.org/get-value/-/get-value-2.0.6.tgz"
   "version" "2.0.6"
+
+"getenvprop@file:/Users/tsigel/WebstormProjects/tsigel/packages/getEnvProp":
+  "resolved" "file:packages/getEnvProp"
+  "version" "0.0.1"
 
 "getpass@^0.1.1":
   "integrity" "sha512-0fzj9JxOLfJ+XGLhR8ze3unN0KZCgZwiSSDz168VERjK8Wl8kVSdcu2kspd4s4wtAa1y/qrVRiAA0WclVsu0ng=="

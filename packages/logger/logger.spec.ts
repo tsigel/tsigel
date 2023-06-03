@@ -1,5 +1,5 @@
-import { error, info, log, warn } from './logger';
-import { blue, red, yellow, white } from 'chalk';
+import { info, log, warn } from './logger';
+import { blue, white, yellow } from 'chalk';
 
 describe('Logger tests', () => {
     let result: Array<string> = [];
