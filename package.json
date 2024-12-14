@@ -9,6 +9,10 @@
   "workspaces": [
     "packages/*"
   ],
+  "scripts": {
+    "changed": "npx lerna changed",
+    "publish": "npx lerna publish"
+  },
   "jest": {
     "collectCoverage": true,
     "coveragePathIgnorePatterns": [
