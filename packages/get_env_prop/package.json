@@ -1,0 +1,26 @@
+{
+  "name": "@tsigel/get_env_prop",
+  "version": "1.0.1",
+  "description": "Get required property from env with exeption. Get typed property.",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "private": false,
+  "scripts": {
+    "test": "cd ../../ && jest packages/get_env_prop/*.spec.ts",
+    "build": "npx tsc",
+    "preversion": "npm run test && npm run build"
+  },
+  "files": [
+    "dist/*",
+    "readme.md"
+  ],
+  "keywords": [
+    "process",
+    "env"
+  ],
+  "author": "tsigel",
+  "license": "ISC",
+  "dependencies": {
+    "@tsigel/logger": "^1.0.3"
+  }
+}
