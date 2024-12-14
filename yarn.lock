@@ -1421,7 +1421,7 @@
   dependencies:
     "@tsigel/logger" "^1.0.3"
 
-"@tsigel/logger@^1.0.3", "@tsigel/logger@file:/Users/tsigel/WebstormProjects/tsigel/packages/logger":
+"@tsigel/logger@file:/Users/tsigel/WebstormProjects/tsigel/packages/logger":
   version "1.0.3"
   resolved "file:packages/logger"
   dependencies:
