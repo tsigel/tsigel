@@ -1,98 +1,60 @@
-import { asyncMap } from "./asyncMap";
+import asyncMap from './asyncMap';
 
-describe("Async map", () => {
-  it("Check chain call", (done) => {
-    return asyncMap(
-      1,
-      (item) => {
-        return Promise.resolve(item);
-      },
-      [1, 2, 3]
-    )
-      .then((list) => {
-        expect(list).toEqual([1, 2, 3]);
-      })
-      .then(done);
-  });
-
-  it("Curry call", (done) => {
-    const mapTo = asyncMap(1, (item: number) => {
-      return item * 2 + 1;
+describe('asyncMap', () => {
+    it('should handle synchronous functions', async () => {
+        const input = [1, 2, 3, 4];
+        const result = await asyncMap(2, (x) => x * 2, input);
+        expect(result).toEqual([2, 4, 6, 8]);
     });
-    mapTo([1, 2, 3]).then((result) => {
-      expect(result).toEqual([3, 5, 7]);
-      done();
+
+    it('should handle asynchronous functions', async () => {
+        const input = [1, 2, 3];
+        const result = await asyncMap(2, async (x) => {
+            await new Promise((r) => setTimeout(r, 10));
+            return x * 3;
+        }, input);
+        expect(result).toEqual([3, 6, 9]);
     });
-  });
 
-  it("Check all treads", (done) => {
-    return asyncMap(
-      5,
-      (item) => {
-        return new Promise((resolve) => {
-          setTimeout(() => resolve(item), (5 - item) * 10);
-        });
-      },
-      [1, 2, 3, 4, 5]
-    )
-      .then((list) => {
-        expect(list).toEqual([1, 2, 3, 4, 5]);
-      })
-      .then(done);
-  });
-
-  it("Not promise return", (done) => {
-    return asyncMap(1, (item) => ({ [item]: item }), [1, 2, 3])
-      .then((list) => {
-        expect(list).toEqual([{ 1: 1 }, { 2: 2 }, { 3: 3 }]);
-      })
-      .then(done);
-  });
-
-  it("Run with exception in callback function", (done) => {
-    return asyncMap(
-      1,
-      (item) => {
-        if (item === 3) {
-          throw new Error("Check exception");
-        }
-        return item;
-      },
-      [1, 2, 3]
-    ).then(
-      () => {
-        throw new Error("Wrong test work!");
-      },
-      (e) => {
-        expect(e.message).toBe("Check exception");
-        done();
-      }
-    );
-  });
-
-  it("Check long async array", (done) => {
-    const list: Array<number> = [];
-
-    for (let i = 0; i < 100; i++) {
-      list.push(i);
-    }
-
-    function randomInteger(min: number, max: number): number {
-      const rand = min - 0.5 + Math.random() * (max - min + 1);
-      return Math.round(rand);
-    }
-
-    return asyncMap(
-      5,
-      (item) => {
-        return new Promise((resolve) => {
-          setTimeout(() => resolve(item), randomInteger(0, 100));
-        });
-      },
-      list
-    ).then((result) => {
-      expect(result).toEqual(list);
-      done();
+    it('should return a curried function if list is not provided', async () => {
+        const curried = asyncMap(2, (x: number) => x + 1);
+        const result = await curried([1, 2, 3]);
+        expect(result).toEqual([2, 3, 4]);
     });
-  });
+
+    it('should preserve the order of items', async () => {
+        const input = [1, 2, 3, 4];
+        const result = await asyncMap(2, async (x) => {
+            await new Promise((r) => setTimeout(r, 5 * (5 - x)));
+            return x * 10;
+        }, input);
+
+        expect(result).toEqual([10, 20, 30, 40]);
+    });
+
+    it('should propagate errors from sync callback', async () => {
+        const input = [1, 2, 3];
+        const failingCallback = (x: number) => {
+            if (x === 2) throw new Error('fail!');
+            return x;
+        };
+
+        await expect(asyncMap(2, failingCallback, input)).rejects.toThrow('fail!');
+    });
+
+    it('should propagate errors from async callback', async () => {
+        const input = [1, 2, 3];
+        const failingAsyncCallback = async (x: number) => {
+            if (x === 3) throw new Error('async fail!');
+            return x;
+        };
+
+        await expect(asyncMap(2, failingAsyncCallback, input)).rejects.toThrow('async fail!');
+    });
+
+    it('should handle a large number of threads', async () => {
+        const input = Array.from({ length: 20 }, (_, i) => i);
+        const result = await asyncMap(10, async (x) => x * 2, input);
+        expect(result).toEqual(input.map((x) => x * 2));
+    });
 });

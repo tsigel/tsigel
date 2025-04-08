@@ -11,12 +11,12 @@
   ],
   "scripts": {
     "build": "tsc",
-    "test": "jest",
+    "test": "cd ../../; npx jest ./packages/wait/**/*.spec.ts",
     "lint": "eslint ./src --ext .ts",
     "prepublishOnly": "npm run build && npm test"
   },
   "keywords": [],
-  "author": "",
+  "author": "tsigel <tsddaniil@gmail.com>",
   "license": "ISC",
   "description": "",
   "devDependencies": {

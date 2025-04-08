@@ -15,6 +15,8 @@ export function get_env_prop<R, T extends (env_value: string | undefined) => R>(
   }
 }
 
+export default get_env_prop;
+
 export const strict = (value: string | undefined): string => {
   if (value == null) {
     throw new Error(`Env value can't be empty!`);

@@ -1,67 +1,60 @@
-import { get_env_prop, strict } from "./index";
+import { get_env_prop, list, strict } from './index';
 
-describe("Get required property tests", () => {
-  let code: number | undefined = undefined;
-  let message: string[] = [];
+describe('get_env_prop', () => {
+    const ORIGINAL_ENV = process.env;
 
-  const origin_exit = process.exit;
-  const origin_error = console.error;
-
-  const make_test_env = (
-    name: string,
-    value: string | undefined,
-    cb: () => void
-  ) => {
-    if (typeof value === "undefined") {
-      delete process.env[name];
-    } else {
-      process.env[name] = value;
-    }
-    try {
-      cb();
-      delete process.env[name];
-    } catch (e) {
-      delete process.env[name];
-      throw e;
-    }
-  };
-
-  afterEach(() => {
-    (process as any).exit = origin_exit;
-    console.error = origin_error;
-  });
-
-  describe("With exception", () => {
-    it("Get strict property", () => {
-      expect(() => get_env_prop("SOME_NAME", strict)).toThrow(
-        `Error get SOME_NAME from env! Env value can't be empty!`
-      );
-    });
-  });
-
-  describe("Without exception", () => {
-    it("Get required property", () => {
-      make_test_env("SOME_NAME", "some_text", () => {
-        const value = get_env_prop("SOME_NAME");
-        expect(code).toBe(undefined);
-        expect(value).toBe("some_text");
-      });
+    beforeEach(() => {
+        process.env = { ...ORIGINAL_ENV };
     });
 
-    it("Get required number property", () => {
-      make_test_env("SOME_NAME", "1", () => {
-        const value = get_env_prop("SOME_NAME", Number);
-        expect(code).toBe(undefined);
-        expect(value).toBe(1);
-      });
+    afterEach(() => {
+        process.env = ORIGINAL_ENV;
     });
 
-    it("Get required boolean property", () => {
-      make_test_env("SOME_NAME", "0", () => {
-        const value = get_env_prop("SOME_NAME", (v) => Boolean(Number(v)));
-        expect(code).toBe(undefined);
-        expect(value).toBe(false);
-      });
+    it('should return the raw env variable value', () => {
+        process.env.TEST_KEY = 'raw_value';
+        expect(get_env_prop('TEST_KEY')).toBe('raw_value');
     });
-  });
+
+    it('should return undefined if env variable does not exist', () => {
+        delete process.env.TEST_MISSING;
+        expect(get_env_prop('TEST_MISSING')).toBeUndefined();
+    });
+
+    it('should return processed value with processor function', () => {
+        process.env.TEST_NUM = '42';
+        const result = get_env_prop('TEST_NUM', (v) => parseInt(v || '', 10));
+        expect(result).toBe(42);
+    });
+
+    it('should throw error with message if processor throws', () => {
+        expect(() => get_env_prop('TEST_FAIL', () => {
+            throw new Error('broken');
+        })).toThrow('Error get TEST_FAIL from env! broken');
+    });
+});
+
+describe('strict', () => {
+    it('should return value if defined', () => {
+        expect(strict('defined')).toBe('defined');
+    });
+
+    it('should throw if value is null or undefined', () => {
+        expect(() => strict(undefined)).toThrow('Env value can\'t be empty!');
+        expect(() => strict(null as any)).toThrow('Env value can\'t be empty!');
+    });
+});
+
+describe('list', () => {
+    it('should return undefined if input is undefined', () => {
+        expect(list()(undefined)).toBeUndefined();
+    });
+
+    it('should split by default comma', () => {
+        expect(list()('a,b,c')).toEqual(['a', 'b', 'c']);
+    });
+
+    it('should split by custom separator', () => {
+        expect(list('|')('a|b|c')).toEqual(['a', 'b', 'c']);
+    });
 });

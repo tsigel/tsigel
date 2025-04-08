@@ -6,7 +6,7 @@
   "types": "./dist/index.d.ts",
   "private": false,
   "scripts": {
-    "test": "cd ../../ && jest packages/get_env_prop/*.spec.ts",
+    "test": "cd ../../ && jest packages/get_env_prop/**/*.spec.ts",
     "build": "npx tsc",
     "preversion": "npm run test && npm run build"
   },

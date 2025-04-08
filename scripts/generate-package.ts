@@ -92,14 +92,14 @@ const packageJson = {
     "publishConfig": {
         "access": "public"
     },
+    "author": "tsigel <tsddaniil@gmail.com>",
     scripts: {
         build: 'tsc',
-        test: 'jest',
         lint: 'eslint ./src --ext .ts',
         prepublishOnly: 'npm run build && npm test',
+        test: `cd ../../; npx jest ./packages/${name}/**/*.spec.ts`,
     },
     keywords: [],
-    author: '',
     license: 'ISC',
     description: ''
 };
