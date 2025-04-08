@@ -1,0 +1,26 @@
+{
+  "name": "@tsigel/logger-discord",
+  "version": "0.0.0",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "repository": "git@github.com:tsigel/tsigel.git",
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": "tsigel <tsddaniil@gmail.com>",
+  "scripts": {
+    "build": "tsc",
+    "lint": "eslint ./src --ext .ts",
+    "prepublishOnly": "npm run build && npm test",
+    "test": "cd ../../; npx jest ./packages/logger-discord/**/*.spec.ts"
+  },
+  "keywords": [],
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "winston-transport": "^4.9.0"
+  }
+}
