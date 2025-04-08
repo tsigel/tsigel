@@ -1,6 +1,6 @@
 {
   "name": "@tsigel/logger",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "files": [
@@ -26,8 +26,8 @@
     "typescript": "^5.8.3"
   },
   "dependencies": {
-    "@tsigel/type-utils": "^1.0.1",
-    "@tsigel/wait": "^1.0.3",
+    "@tsigel/type-utils": "^1.0.2",
+    "@tsigel/wait": "^1.0.4",
     "@types/ramda": "^0.30.2",
     "ramda": "^0.30.1",
     "winston": "^3.17.0",

@@ -1,7 +1,7 @@
 import { createLogger, format, transports } from 'winston';
 import Transport from 'winston-transport';
-import isNotNil from 'ramda/es/isNotNil';
-import omit from 'ramda/es/omit';
+import isNotNil from 'ramda/src/isNotNil';
+import omit from 'ramda/src/omit';
 import { wait } from '@tsigel/wait';
 import type { Func } from '@tsigel/type-utils';
 
