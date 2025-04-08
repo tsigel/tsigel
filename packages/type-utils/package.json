@@ -1,0 +1,16 @@
+{
+  "name": "@tsigel/type-utils",
+  "version": "0.0.0",
+  "types": "./index.ts",
+  "scripts": {},
+  "files": [
+    "./index.ts"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "Typescript util types"
+}
