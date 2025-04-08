@@ -88,6 +88,7 @@ const packageJson = {
     main: './dist/index.js',
     types: './dist/index.d.ts',
     files: ['dist'],
+    repository: 'git@github.com:tsigel/tsigel.git',
     scripts: {
         build: 'tsc',
         test: 'jest',
