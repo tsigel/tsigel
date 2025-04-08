@@ -7,8 +7,7 @@
   "scripts": {
     "check:updates": "npx lerna changed",
     "generate:package": "ts-node scripts/generate-package.ts",
-    "test": "jest",
-    "prepublishOnly": "npm test"
+    "test": "jest"
   },
   "devDependencies": {
     "@types/yargs": "^17.0.33",
