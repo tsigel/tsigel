@@ -1,43 +1,17 @@
 {
-  "name": "tsigel",
-  "version": "1.0.0",
-  "main": "index.js",
-  "repository": "git@github.com:tsigel/tsigel.git",
-  "author": "tsigel <tsddaniil@gmail.com>",
-  "license": "MIT",
-  "private": false,
+  "name": "root",
+  "private": true,
   "workspaces": [
     "packages/*"
   ],
   "scripts": {
-    "changed": "npx lerna changed",
-    "publish": "npx lerna publish"
-  },
-  "jest": {
-    "collectCoverage": true,
-    "coveragePathIgnorePatterns": [
-      "/node_modules/",
-      "/test/"
-    ],
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js"
-    ],
-    "transform": {
-      "^.+\\.(ts|tsx)$": "ts-jest"
-    },
-    "testMatch": [
-      "**/*spec.+(ts)"
-    ]
+    "check:updates": "npx lerna changed",
+    "generate:package": "ts-node scripts/generate-package.ts"
   },
   "devDependencies": {
-    "jest": "^26.6.3",
-    "lerna": "^4.0.0",
-    "ts-jest": "^26.5.6",
-    "typescript": "^4.2.4"
-  },
-  "dependencies": {
-    "@types/jest": "^26.0.23"
+    "@types/yargs": "^17.0.33",
+    "lerna": "^8.2.1",
+    "ts-node": "^10.9.2",
+    "yargs": "^17.7.2"
   }
 }
