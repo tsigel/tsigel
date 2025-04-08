@@ -160,8 +160,10 @@ export const makeLoggerModule = (props: LoggerModuleProps): ILoggerConstructor =
         );
     };
 
-    process.on('uncaughtException', handler);
-    process.on('unhandledRejection', handler);
+    if (!props.noHandleGlobalError) {
+        process.on('uncaughtException', handler);
+        process.on('unhandledRejection', handler);
+    }
 
     return Logger;
 };
@@ -172,7 +174,8 @@ type LoggerModuleProps = {
     outFormat: 'TEXT' | 'JSON';
     version: string;
     defaultMeta?: Meta;
-    transports?: TransportStream[]
+    transports?: TransportStream[],
+    noHandleGlobalError: boolean
 }
 
 export type Meta = Record<string, string | number | boolean>;
