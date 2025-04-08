@@ -89,6 +89,9 @@ const packageJson = {
     types: './dist/index.d.ts',
     files: ['dist'],
     repository: 'git@github.com:tsigel/tsigel.git',
+    "publishConfig": {
+        "access": "public"
+    },
     scripts: {
         build: 'tsc',
         test: 'jest',
