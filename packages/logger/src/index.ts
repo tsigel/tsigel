@@ -175,7 +175,7 @@ type LoggerModuleProps = {
     version: string;
     defaultMeta?: Meta;
     transports?: TransportStream[],
-    noHandleGlobalError: boolean
+    noHandleGlobalError?: boolean
 }
 
 export type Meta = Record<string, string | number | boolean>;
