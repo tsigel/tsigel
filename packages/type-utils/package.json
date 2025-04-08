@@ -1,6 +1,6 @@
 {
   "name": "@tsigel/type-utils",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "types": "./index.ts",
   "scripts": {},
   "files": [
